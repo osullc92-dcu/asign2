@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Declare the layout type as Constraint Layout -->
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- Layout attributes for the Open Camera TextView-->
     <TextView
         android:id="@+id/OpenCameraTextView"
         android:layout_width="0dp"
@@ -31,6 +33,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
+    <!-- Layout attributes for the Open Gallery TextView-->
     <TextView
         android:id="@+id/ViewPictureTextView"
         android:layout_width="0dp"
@@ -52,6 +55,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/OpenCameraTextView" />
 
+    <!-- Layout attributes for the Call Explicit Intent Activity TextView-->
     <TextView
         android:id="@+id/CallAnActivityTextView"
         android:layout_width="0dp"
@@ -73,6 +77,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ViewPictureTextView" />
 
+    <!-- Layout attributes for the Explicit Intent Activity returned values TextView-->
     <TextView
         android:id="@+id/ActivityContentsTextView"
         android:layout_width="0dp"
@@ -82,7 +87,7 @@
         android:layout_marginStart="16dp"
         android:background="#388e3c"
         android:ems="10"
-        android:gravity="top|left"
+        android:gravity="start"
         android:inputType="none"
         android:text=""
         android:textAlignment="center"
@@ -93,6 +98,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CallAnActivityTextView" />
 
+    <!-- Layout attributes for the Send Email Button-->
     <Button
         android:id="@+id/SendButton"
         android:layout_width="0dp"
@@ -100,6 +106,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:background="#004dc1"
+        android:onClick="sendEmail"
         android:text="@string/button_send"
         android:textAlignment="center"
         android:textAllCaps="false"
@@ -107,14 +114,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ActivityContentsTextView" />
-
-    <!--<TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="118dp" />-->
 
 </android.support.constraint.ConstraintLayout>

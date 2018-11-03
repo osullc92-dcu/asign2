@@ -7,4 +7,5 @@
     <string name="email_to">To:</string>
     <string name="email_subject">Subject:</string>
     <string name="email_compose">Compose:</string>
+    <string name="mess_toast">Button activated</string>
 </resources>
