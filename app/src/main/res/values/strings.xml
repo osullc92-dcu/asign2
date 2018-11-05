@@ -7,5 +7,6 @@
     <string name="email_to">To:</string>
     <string name="email_subject">Subject:</string>
     <string name="email_compose">Compose:</string>
-    <string name="mess_toast">Button activated</string>
+    <string name="fill_all_fields">Please ensure all fields are filled in!</string>
+    <string name="invalid_email">Please enter a valid email address!</string>
 </resources>

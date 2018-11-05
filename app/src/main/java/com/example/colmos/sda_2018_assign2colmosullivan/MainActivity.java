@@ -1,11 +1,9 @@
 package com.example.colmos.sda_2018_assign2colmosullivan;
 /*
-    Created By: Colm O'Sullivan
-    Last Edited: 03/11/2018
 
-*/
+ */
 
-// Import all required classes
+// Import all classes required for this class
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -27,27 +25,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Intent to copy email information from explicit intent
         Intent intent = getIntent();
-        toAddress = intent.getStringExtra("EMAIL_TO");
-        subjectTitle = intent.getStringExtra("EMAIL_SUBJECT");
-        messageContent = intent.getStringExtra("EMAIL_COMPOSE");
+        toAddress = intent.getStringExtra("EMAIL_TO"); // Takes value from email field in explicit intent
+        subjectTitle = intent.getStringExtra("EMAIL_SUBJECT"); // Takes value from subject field in explicit intent
+        messageContent = intent.getStringExtra("EMAIL_COMPOSE"); // Takes value from compose field in explicit intent
+        //Log messages to show the information was received successfully
         //Log.i("EmailIntent", "EmailContents.java to email returned as " + toAddress);
         //Log.i("EmailIntent", "EmailContents.java subject email returned as " + subjectTitle);
         //Log.i("EmailIntent", "EmailContents.java compose email returned as " + messageContent);
 
         // Capture the layout's TextView and set the string as its text
-        if (toAddress != null && subjectTitle != null && messageContent != null){
-            emailContentsSet = true;
+        if (toAddress != null && subjectTitle != null && messageContent != null){ // Ensures the email content is only displayed once the explicit intent is completed
+            emailContentsSet = true; // Used to enable the send button
             TextView textView = findViewById(R.id.ActivityContentsTextView);
             String emailTextViewContents = "To: " + toAddress + "\n" + "Subject: " + subjectTitle + "\n" + "Content: " + messageContent;
-            textView.setText(emailTextViewContents);
-            Log.i("EmailIntent", "emailContentsSet is: " + emailContentsSet);
+            textView.setText(emailTextViewContents); // Prints the email information to the MainActivity window
+            //Log.i("EmailIntent", "emailContentsSet is: " + emailContentsSet);
         }
-
-
     }
 
-    /** Called when the user taps the Send button */
+    // Intent to open the phones camera app to capture a picture
+    // https://developer.android.com/guide/components/intents-common#java
     public void capturePhoto(View view) {
         Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
         //if (intent.resolveActivity(getPackageManager()) != null) {
@@ -55,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
         //}
     }
 
+    // Intent to open the phones gallery to view captured images
+    // https://stackoverflow.com/questions/6016000/how-to-open-phones-gallery-through-code
+    // https://stackoverflow.com/questions/16928727/open-gallery-app-from-android-intent/23821227
     public void openGallery(View view) {
         Intent intent = new Intent();
         intent.setAction(android.content.Intent.ACTION_VIEW);
@@ -63,60 +65,28 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // Intent to open a second activity allowing the used to enter details for sending an email
+    // https://developer.android.com/training/basics/firstapp/starting-activity#java
     public void callAnActivity(View view) {
         Intent intent = new Intent(this, EmailContents.class);
         startActivity(intent);
     }
 
+    // Intent to allow the user to send the email as composed in the explicit intent
+    // https://developer.android.com/guide/components/intents-common#java
+    /*
+       Issues were encountered here when trying to add values to the EXTRA_EMAIL variable
+       This was due to me attempting to add the email address as a single string rather than a value in an array
+       I found the solution at the following webpage: https://stackoverflow.com/questions/9097080/intent-extra-email-not-populating-the-to-field
+    */
     public void sendEmail(View view) {
-        if (emailContentsSet) {
+        if (emailContentsSet) { // If statement to ensure the method only becomes functional once the fields have been populated
             Intent intent = new Intent(Intent.ACTION_SENDTO);
-            //intent.setType("*/*");
             intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-            intent.putExtra(Intent.EXTRA_EMAIL, new String[] {toAddress});
-            intent.putExtra(Intent.EXTRA_SUBJECT, subjectTitle);
-            intent.putExtra(Intent.EXTRA_TEXT, messageContent);
-            //if (intent.resolveActivity(getPackageManager()) != null) {
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[] {toAddress}); // The email address entered
+            intent.putExtra(Intent.EXTRA_SUBJECT, subjectTitle); // The subject of the email entered
+            intent.putExtra(Intent.EXTRA_TEXT, messageContent); // The content of the email entered
             startActivity(intent);
-            //}
         }
-    }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        //Log.i(TAG, "The activity is visible and about to be started.");
-    }
-
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        //Log.i(TAG, "The activity is visible and about to be restarted.");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //Log.i(TAG, "The activity is and has focus (it is now \"resumed\")");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //Log.i(TAG, "Another activity is taking focus (this activity is about to be \"paused\")");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        //Log.i(TAG, "The activity is no longer visible (it is now \"stopped\")");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //Log.i(TAG, "The activity is about to be destroyed.");
     }
 }
