@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SDA_2018_Assign2 Colm O\'Sullivan</string>
+    <string name="app_name">SDA Assign 2 2018: Colm O\'Sullivan</string>
     <string name="open_camera">Implicit Intent: Open Camera</string>
     <string name="view_picture">Implicit Intent: View Picture</string>
     <string name="call_activity">Explicit Intent: Call an Activity</string>
@@ -9,4 +9,5 @@
     <string name="email_compose">Compose:</string>
     <string name="fill_all_fields">Please ensure all fields are filled in!</string>
     <string name="invalid_email">Please enter a valid email address!</string>
+    <string name="fill_email_contents">To activate the send button enter the email contents first using the explicit intent</string>
 </resources>

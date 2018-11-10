@@ -1,17 +1,26 @@
 package com.example.colmos.sda_2018_assign2colmosullivan;
 /*
-
+    Last Modified: 07/Nov/2018
+    Modified By: Colm O'Sullivan
+    This file handles the activity_main.xml layout contents
+    It contains one class which opens the phones camera
+    A second method opens the gallery of the phone
+    A third method call a second class titled EmailContents.java
+    The fourth textView shows the contents of the email as entered in the activity_email_contents.xml layout.
+        This is only visible once the user has submitted the information through the activity_email_contents.xml layout.
+    The send button calls an email app on the phone and sends the email as compiled in the activity_email_contents.xml layout.
+        The button only becomes activate once the email information has successfully been received to the activity_main.xml layout
  */
 
 // Import all classes required for this class
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public Boolean emailContentsSet = false; // Global variable (within this class) used to only enable to Send Button once the information has beet retrieved from the explicit intent
@@ -87,6 +96,11 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(Intent.EXTRA_SUBJECT, subjectTitle); // The subject of the email entered
             intent.putExtra(Intent.EXTRA_TEXT, messageContent); // The content of the email entered
             startActivity(intent);
+        } else {
+            int duration = Toast.LENGTH_SHORT;
+            CharSequence emailContentsNotSet = getResources().getString(R.string.fill_email_contents);
+            Toast toastEmailContentsNotSet = Toast.makeText(this, emailContentsNotSet, duration);
+            toastEmailContentsNotSet.show();
         }
     }
 }

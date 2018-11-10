@@ -1,13 +1,18 @@
 package com.example.colmos.sda_2018_assign2colmosullivan;
 /*
-
+    Last Modified: 10/Nov/2018
+    Modified By: Colm O'Sullivan
+    This is the EmailContents layout java file
+    It contains handlers for storing the email address, subject and content
+    It validates the email address by checking for the positioning of the @ and . symbols
+    It ensures all fields have been filled in
+    Once all fields are filled and the email address is valid it returns the values to the MainActivity.java file when the send button is pressed
  */
 
 // Import all classes required for this class
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -61,6 +66,8 @@ public class EmailContents extends AppCompatActivity {
         CharSequence notValidEmail = getResources().getString(R.string.invalid_email);
         Toast toastFillAllFields = Toast.makeText(this, fillAllFields, duration);
         Toast toastNotValidEmail = Toast.makeText(this, notValidEmail, duration);
+
+
 
         // Checks if any of the fields are blank and a toast to tell the user that all fields are not populated
         if (sEmailTo.equals("") || sSubjectEmail.equals("") || sComposeEmail.equals("")){
